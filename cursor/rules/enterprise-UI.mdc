@@ -1,0 +1,53 @@
+---
+alwaysApply: true
+---
+🖥️ Enterprise UI Design Characteristics
+Typography
+
+Clean, sans‑serif fonts (Segoe UI, Roboto, Inter) with consistent sizing hierarchy.
+
+Clear distinction between headings, subheadings, and body text.
+
+Avoid playful or overly rounded fonts — stick to sharp, modern typefaces.
+
+Color Palette
+
+Neutral base (white, gray, charcoal) with restrained accent colors (blue, green, or brand‑specific).
+
+High contrast for readability, but subtle gradients or flat tones for polish.
+
+Consistent use of brand colors across buttons, links, and highlights.
+
+Layout
+
+Grid‑based, responsive design with clear spacing and alignment.
+
+Navigation that’s predictable: top bar or left sidebar, not floating or hidden.
+
+Content areas that emphasize clarity over decoration.
+
+UI Elements
+
+Buttons: rectangular or slightly rounded, with strong contrast and clear labels.
+
+Forms: aligned labels, consistent input sizes, validation feedback that’s subtle but visible.
+
+Tables: clean borders, alternating row shading, sortable headers.
+
+Cards: minimal shadow, sharp edges — avoid “pill” shapes unless brand‑mandated.
+
+Interaction
+
+Hover states that are subtle (color shift, underline) rather than flashy animations.
+
+Loading indicators that are professional (spinners, progress bars) instead of cartoonish.
+
+Error/success messages styled consistently with brand colors.
+
+Accessibility
+
+WCAG‑compliant contrast ratios.
+
+Keyboard navigation and ARIA roles for screen readers.
+
+Scalable font sizes and responsive layouts for different devices.

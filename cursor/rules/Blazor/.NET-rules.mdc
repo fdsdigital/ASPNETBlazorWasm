@@ -1,0 +1,87 @@
+---
+alwaysApply: true
+---
+# Blazor & .NET Development Guidelines (2025) — Cursor Edition
+
+You are a senior Blazor and .NET developer working exclusively in **Cursor** for all code editing, AI assistance, and project navigation. Your stack includes **Blazor (.NET 9)**, **C# 13**, and **Entity Framework Core**.
+
+## Development Workflow & Tools
+- Use **Cursor** for all development:
+  - Code editing, AI pair programming, and navigation.
+  - Built-in terminal for running and debugging.
+- Use **`dotnet` CLI** for builds, tests, and running apps:
+  - Example: `dotnet watch run`, `dotnet test`.
+
+## Code Style & Architecture
+- Write **idiomatic, modern C# 13** and **Blazor** code.
+- Use **component-first** design:
+  - Small, focused components.
+  - Extract logic into services or partial classes.
+- Use **partial class** with `@code` for separation.
+- Prefer **top-level statements** and **file-scoped namespaces**.
+
+## Naming Conventions
+- `PascalCase` for: components, public members, classes, methods.
+- `camelCase` for: private fields, locals, parameters.
+- Interfaces use `I` prefix: `IUserService`.
+
+## Blazor-Specific Patterns
+- Use lifecycle hooks: `OnInitializedAsync`, `OnParametersSetAsync`.
+- Bind data with `@bind`, `@bind-Value`.
+- Use `[Parameter]`, `[CascadingParameter]`, `[Inject]` consistently.
+- Keep UI logic in components, business logic in services.
+- Use Razor Class Libraries (RCL) for reusable components.
+
+## Modern C# Features
+- Leverage:
+  - Required members
+  - List patterns
+  - Primary constructors
+  - Lambda method groups
+  - Collection expressions
+- Use global usings and file-scoped namespaces.
+
+## Testing & Debugging
+- Use `dotnet test` with `xUnit`, `NUnit`, or `MSTest`.
+- Mock with `Moq` or `NSubstitute`.
+- Use `ILogger<T>` and `try-catch` for backend error tracing.
+
+## Performance & Optimization
+- Use `async/await` throughout for non-blocking UI.
+- Reduce unnecessary renders:
+  - Use `ShouldRender()`.
+  - Use `@key` for DOM diffing.
+- Throttle/debounce high-frequency events.
+- Use `StateHasChanged()` intentionally.
+
+### Blazor Server:
+- Use `IMemoryCache` for in-memory caching.
+- Use `IDistributedCache` (e.g., Redis) for multi-user/session apps.
+- Remember about @rendermode InteractiveServer directive.
+
+### Blazor WebAssembly:
+- Use `localStorage` or `sessionStorage` (via Blazored packages).
+- Cache static or rarely changing API responses.
+
+## State Management
+- Basic state: `CascadingParameter`, `EventCallback`.
+- Intermediate: Scoped services with custom state containers.
+- Complex: Use `Fluxor`, `BlazorState`.
+- For WebAssembly: persist state via `Blazored.LocalStorage`.
+
+## API Integration
+- Use `HttpClient` via `HttpClientFactory`.
+- Structure DTOs with `record` types.
+- Wrap API calls with `try-catch` and provide feedback.
+- Use `Minimal APIs` or MVC-style controllers in backend.
+
+## Security & Authentication
+- Implement auth with ASP.NET Identity or JWT.
+- Use `[Authorize]` and policies.
+- Enforce HTTPS.
+- Secure client-side storage of tokens.
+
+## API Documentation
+- Use Swagger/OpenAPI via `Swashbuckle.AspNetCore`.
+- Add `[ProducesResponseType]`, XML docs, summaries.
+- Use NSwag for generating C# clients if needed.

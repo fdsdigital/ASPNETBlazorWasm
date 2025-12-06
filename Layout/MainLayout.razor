@@ -1,0 +1,49 @@
+@inherits LayoutComponentBase
+
+<div class="site-wrapper">
+    <NavMenu />
+    
+    <main class="main-content">
+        @Body
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo-icon">◆</span>
+                <span class="logo-text">FDS Digital</span>
+                <p class="footer-tagline">Building Tomorrow's Digital Solutions</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <a href="/about">About Us</a>
+                    <a href="/portfolio">Portfolio</a>
+                    <a href="/contact">Careers</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <a href="/services">Web Development</a>
+                    <a href="/services">Mobile Apps</a>
+                    <a href="/services">Cloud & DevOps</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <a href="/contact">Contact Us</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 FDS Digital. All rights reserved.</p>
+        </div>
+    </footer>
+</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+
