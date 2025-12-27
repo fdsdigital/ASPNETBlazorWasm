@@ -49,14 +49,14 @@
 
         /* Text */
         .logo-text-svg {
-            font-size: 1.875rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: #6366f1;
             white-space: nowrap;
             position: static;
         }
 
-        /* Animations */
+        /* Slide animations */
         .text-left {
             transform: translateX(-120%);
             animation: slideLeft 2s forwards;
@@ -79,19 +79,34 @@
             }
         }
 
+        /* Diamond jump + rotate + pop */
+        @keyframes jumpRotatePop {
+    0% {
+        transform: scale(0) translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1) translateY(-16px) rotate(180deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) translateY(0) rotate(360deg);
+        opacity: 1;
+    }
+}
+
         /* Diamond logo in center */
         .center-logo {
             display: flex;
             justify-content: center;
             align-items: center;
-            opacity: 0;                 /* initially hidden */
-            transform: scale(0);        /* start small */
-            transition: opacity 0.2s ease, transform 0.2s ease;
+            opacity: 0;
+            transform: scale(0);
         }
 
         .center-logo.show {
-            opacity: 1;                 /* visible */
-            transform: scale(1);        /* pop in */
+            transform-origin: center center;
+            animation: jumpRotatePop 0.5s ease-in-out forwards;
         }
 
         /* Page container for centered content */
@@ -100,6 +115,14 @@
             margin: 0 auto;
             padding: 0 16px;
             box-sizing: border-box;
+        }
+
+        body.is-loading {
+            overflow: hidden;
+        }
+
+        html {
+            overflow-y: scroll;
         }
     </style>
 </head>
@@ -141,21 +164,37 @@
 
     <script src="_framework/blazor.webassembly.js"></script>
     <script>
-        const textAnimationDuration = 2000; // duration of FDS/Digital slide animations
+        const animationDuration = 2000; // total loader duration
+        const textAnimationDuration = 1200; // when FDS/Digital texts meet
 
-        Blazor.start();
+        // Lock scrolling immediately
+        document.body.classList.add('is-loading');
 
-        // Show diamond and remove loader in sequence
+        // Show diamond slightly before text finishes sliding
         setTimeout(() => {
             const diamond = document.querySelector('.center-logo');
             if (diamond) diamond.classList.add('show');
+        }, textAnimationDuration - 100);
 
-            // Remove loader after short buffer
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                if (loader) loader.remove();
-            }, 200); // 200ms after diamond pops
-        }, textAnimationDuration - 50);
+        // Start Blazor immediately
+        Blazor.start();
+
+        // Remove loader and unlock scroll after total animation
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            if (loader) loader.remove();
+            document.body.classList.remove('is-loading');
+        }, animationDuration);
+    </script>
+
+    <script>
+        // Close nav menu on mobile
+        function closeNavMenu() {
+            const checkbox = document.getElementById('nav-toggle');
+            if (checkbox) {
+                checkbox.checked = false;
+            }
+        }
     </script>
 
 </body>
