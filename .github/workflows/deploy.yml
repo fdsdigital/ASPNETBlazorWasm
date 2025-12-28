@@ -36,10 +36,10 @@ jobs:
       run: dotnet publish --no-build --configuration Release -o release
     
     - name: Change base href in index.html
-      run: sed -i 's/<base href="\/" \/>/<base href="\/${{ github.event.repository.name }}\/" \/>/g' release/wwwroot/index.html
+      run: sed -i 's|<base href="/" />|<base href="/FDSDigital/" />|g' release/wwwroot/index.html
     
     - name: Change base href in 404.html
-      run: sed -i 's/<base href="\/" \/>/<base href="\/${{ github.event.repository.name }}\/" \/>/g' release/wwwroot/404.html
+      run: sed -i 's|<base href="/" />|<base href="/FDSDigital/" />|g' release/wwwroot/404.html
     
     - name: Add .nojekyll file
       run: touch release/wwwroot/.nojekyll
@@ -59,4 +59,3 @@ jobs:
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
-
